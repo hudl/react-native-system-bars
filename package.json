@@ -1,0 +1,139 @@
+{
+  "name": "@hudl/rn-system-bars",
+  "version": "0.1.0",
+  "description": "Control the visibility of Android's Status and Navigation Bars",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
+  "files": [
+    "src",
+    "lib",
+    "android"
+  ],
+  "scripts": {
+    "bootstrap": "yarn example && yarn",
+    "clean": "rimraf ./lib ./node_modules ./example/node_modules ./**/.gradle ./**/build ./**/.idea",
+    "compile": "yarn typescript",
+    "example": "yarn --cwd example",
+    "lc": "yarn lint-fix && yarn compile",
+    "lint": "eslint \"**/*.{js,ts,tsx}\" --max-warnings=0",
+    "lint-fix": "yarn lint --fix",
+    "prepare": "bob build",
+    "release": "release-it",
+    "typescript": "tsc --noEmit"
+  },
+  "keywords": [
+    "react-native",
+    "android",
+    "status bar",
+    "navigation bar",
+    "system UI visibility"
+  ],
+  "repository": "https://github.com/hudl/rn-system-bars",
+  "author": "Brent Kelly (https://github.com/hudl)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hudl/rn-system-bars/issues"
+  },
+  "homepage": "https://github.com/hudl/rn-system-bars#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^11.0.0",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@release-it/conventional-changelog": "^2.0.0",
+    "@types/react": "^16.9.19",
+    "@types/react-native": "0.62.13",
+    "commitlint": "^11.0.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5",
+    "react": "16.13.1",
+    "react-native": "0.63.4",
+    "react-native-builder-bob": "^0.18.0",
+    "release-it": "^14.2.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.1.3"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "yarn lint && yarn typescript"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@react-native-community",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "warn",
+        {
+          "quoteProps": "consistent",
+          "singleQuote": true,
+          "tabWidth": 2,
+          "trailingComma": "es5",
+          "useTabs": false
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  }
+}
