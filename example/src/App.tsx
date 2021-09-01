@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 
-import AndroidSystemBars from '@hudl/rn-system-bars';
+import AndroidSystemBars from 'react-native-system-bars';
 
 export default function App() {
   const onImmersivePress = useCallback(() => {

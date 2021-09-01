@@ -9,13 +9,13 @@ A lightweight implementation that exposes [Android's system UI visibility API](h
 ## Installation
 
 ```sh
-yarn install @hudl/rn-system-bars
+yarn install react-native-system-bars
 ```
 
 ## Usage
 
 ```typescript
-import AndroidSystemBars from "@hudl/rn-system-bars";
+import AndroidSystemBars from "react-native-system-bars";
 
 // Go immersive (i.e. hide status bar and nav bar)
 AndroidSystemBars.setSystemUIVisibility(

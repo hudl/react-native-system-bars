@@ -1,6 +1,6 @@
 {
   "name": "rn-system-bars-example",
-  "description": "Example app for @hudl/rn-system-bars",
+  "description": "Example app for react-native-system-bars",
   "version": "0.0.1",
   "private": true,
   "scripts": {
