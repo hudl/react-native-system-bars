@@ -39,7 +39,7 @@ To fix formatting errors, run the following:
 yarn lint-fix
 ```
 
-To edit the Kotlin files, open `example/android` in Android studio and find the source files at `hudl-rn-system-bars` under `Android`.
+To edit the Kotlin files, open `example/android` in Android studio and find the source files at `react-native-system-bars` under `Android`.
 
 ### Commit message convention
 

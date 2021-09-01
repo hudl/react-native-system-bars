@@ -31,13 +31,13 @@
     "navigation bar",
     "system UI visibility"
   ],
-  "repository": "https://github.com/hudl/rn-system-bars",
-  "author": "Brent Kelly (https://github.com/hudl)",
+  "repository": "https://github.com/hudl/react-native-system-bars",
+  "author": "hudl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hudl/rn-system-bars/issues"
+    "url": "https://github.com/hudl/react-native-system-bars/issues"
   },
-  "homepage": "https://github.com/hudl/rn-system-bars#readme",
+  "homepage": "https://github.com/hudl/react-native-system-bars#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
