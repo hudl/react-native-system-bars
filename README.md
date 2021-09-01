@@ -9,7 +9,7 @@ A lightweight implementation that exposes [Android's system UI visibility API](h
 ## Installation
 
 ```sh
-yarn install react-native-system-bars
+yarn add react-native-system-bars
 ```
 
 ## Usage
