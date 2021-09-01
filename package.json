@@ -1,5 +1,5 @@
 {
-  "name": "react-native-system-bars",
+  "name": "@hudl/rn-system-bars",
   "version": "0.2.1",
   "description": "Control the visibility of Android's Status and Navigation Bars",
   "main": "lib/commonjs/index",
