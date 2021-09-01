@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@hudl/react-native-system-bars": ["./src/index"]
+      "react-native-system-bars": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
