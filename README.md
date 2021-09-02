@@ -1,5 +1,7 @@
 # React Native Android System Bars
 
+[![CircleCI](https://circleci.com/gh/hudl/react-native-system-bars/tree/main.svg?style=svg)](https://circleci.com/gh/hudl/react-native-system-bars/tree/main)
+
 Control the visibility of Android's Status and Navigation Bars.
 
 A lightweight implementation that exposes [Android's system UI visibility API](https://developer.android.com/training/system-ui) to the JS layer. 
