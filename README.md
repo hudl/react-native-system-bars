@@ -14,6 +14,8 @@ yarn add react-native-system-bars
 
 ## Usage
 
+### Setting Android's system UI visibility flags directly
+
 ```typescript
 import AndroidSystemBars from "react-native-system-bars";
 
@@ -26,6 +28,32 @@ AndroidSystemBars.setSystemUIVisibility(
 
 // Show status bar and nav bar
 AndroidSystemBars.setSystemUIVisibility('SYSTEM_UI_FLAG_VISIBLE');
+```
+
+### Utility functions
+
+We've went through the [Android docs](https://developer.android.com/training/system-ui) for managing the visibility of system bars, and came up with a set of utility functions that you can use. 
+
+> If a utility function doesn't exist for your use case, just use the `AndroidSystemBars.setSystemUIVisibility()` function, passing whatever combination of flags you need.
+
+```typescript
+AndroidSystemBars.clearFlags();
+
+AndroidSystemBars.setContentBehindSystemBars();
+
+AndroidSystemBars.dimSystemBars();
+
+AndroidSystemBars.hideStatusBar();
+
+AndroidSystemBars.hideNavigationBar();
+
+AndroidSystemBars.hideStatusAndNavigationBars();
+
+AndroidSystemBars.enableFullScreenMode('immersive', /*preventResizing (optional)*/true);
+
+AndroidSystemBars.enableFullScreenMode('sticky-immersive', /*preventResizing (optional)*/true);
+
+AndroidSystemBars.enableFullScreenMode('lean-back', /*preventResizing (optional)*/true);
 ```
 
 ## Contributing

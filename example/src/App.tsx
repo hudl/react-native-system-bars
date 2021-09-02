@@ -1,25 +1,41 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 
 import AndroidSystemBars from 'react-native-system-bars';
 
 export default function App() {
-  const onImmersivePress = useCallback(() => {
-    AndroidSystemBars.setSystemUIVisibility(
-      'SYSTEM_UI_FLAG_IMMERSIVE',
-      'SYSTEM_UI_FLAG_FULLSCREEN',
-      'SYSTEM_UI_FLAG_HIDE_NAVIGATION'
-    );
-  }, []);
-
-  const onClearFlagsPress = useCallback(() => {
-    AndroidSystemBars.setSystemUIVisibility('SYSTEM_UI_FLAG_VISIBLE');
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Button title="Go immersive" onPress={onImmersivePress} />
-      <Button title="Clear flags" onPress={onClearFlagsPress} />
+      <Button
+        title="Clear flags"
+        onPress={() => {
+          AndroidSystemBars.clearFlags();
+        }}
+      />
+      <Button
+        title="Set content behind system bars"
+        onPress={() => {
+          AndroidSystemBars.setContentBehindSystemBars();
+        }}
+      />
+      <Button
+        title="Fullscreen mode - Immersive"
+        onPress={() =>
+          AndroidSystemBars.enableFullScreenMode('immersive', true)
+        }
+      />
+      <Button
+        title="Fullscreen mode - immersive sticky"
+        onPress={() =>
+          AndroidSystemBars.enableFullScreenMode('sticky-immersive', true)
+        }
+      />
+      <Button
+        title="Fullscreen mode - Lean back"
+        onPress={() =>
+          AndroidSystemBars.enableFullScreenMode('lean-back', true)
+        }
+      />
     </View>
   );
 }
