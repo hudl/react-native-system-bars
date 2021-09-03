@@ -1,6 +1,6 @@
 # React Native Android System Bars
 
-[![CircleCI](https://circleci.com/gh/hudl/react-native-system-bars/tree/main.svg?style=svg)](https://circleci.com/gh/hudl/react-native-system-bars/tree/main)
+[![CircleCI](https://circleci.com/gh/hudl/react-native-system-bars/tree/main.svg?style=svg)](https://circleci.com/gh/hudl/react-native-system-bars/tree/main) [![npm version](https://badge.fury.io/js/react-native-system-bars.svg)](https://badge.fury.io/js/react-native-system-bars)
 
 Control the visibility of Android's Status and Navigation Bars.
 
