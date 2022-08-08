@@ -1,4 +1,4 @@
-package com.example.hudlrnsystembars;
+package com.example;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -29,6 +29,7 @@ public class MainActivity extends ReactActivity {
     public MainActivityDelegate(ReactActivity activity, String mainComponentName) {
       super(activity, mainComponentName);
     }
+
     @Override
     protected ReactRootView createRootView() {
       ReactRootView reactRootView = new ReactRootView(getContext());
@@ -36,6 +37,7 @@ public class MainActivity extends ReactActivity {
       reactRootView.setIsFabric(BuildConfig.IS_NEW_ARCHITECTURE_ENABLED);
       return reactRootView;
     }
+
     @Override
     protected boolean isConcurrentRootEnabled() {
       // If you opted-in for the New Architecture, we enable Concurrent Root (i.e. React 18).

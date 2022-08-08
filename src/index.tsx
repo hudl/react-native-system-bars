@@ -1,5 +1,8 @@
 import { NativeModules, Platform } from 'react-native';
 
+// @ts-ignore-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
 const visibilityFlags = {
   SYSTEM_UI_FLAG_VISIBLE: 0,
   SYSTEM_UI_FLAG_LOW_PROFILE: 0x00000001,
@@ -15,7 +18,9 @@ const visibilityFlags = {
 };
 
 export default class AndroidSystemBars {
-  private static module = NativeModules.AndroidSystemBars;
+  private static module = isTurboModuleEnabled
+    ? require('./NativeAndroidSystemBars').default
+    : NativeModules.AndroidSystemBars;
 
   /**
    * Control the visibility of Android's 'system bars' (i.e. the
@@ -32,6 +37,7 @@ export default class AndroidSystemBars {
     if (Platform.OS === 'android') {
       // eslint-disable-next-line no-bitwise
       const visibility = flags.reduce((a, b) => a | visibilityFlags[b], 0);
+
       AndroidSystemBars.module.setSystemUIVisibility(visibility);
     }
   }
