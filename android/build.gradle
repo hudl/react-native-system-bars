@@ -14,6 +14,9 @@ buildscript {
   }
 }
 
+if (isNewArchitectureEnabled()) {
+    apply plugin: "com.facebook.react"
+}
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
@@ -25,6 +28,14 @@ def getExtOrIntegerDefault(name) {
   return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties['AndroidSystemBars_' + name]).toInteger()
 }
 
+def isNewArchitectureEnabled() {
+    // To opt-in for the New Architecture, you can either:
+    // - Set `newArchEnabled` to true inside the `gradle.properties` file
+    // - Invoke gradle with `-newArchEnabled=true`
+    // - Set an environment variable `ORG_GRADLE_PROJECT_newArchEnabled=true`
+    return project.hasProperty("newArchEnabled") && project.newArchEnabled == "true"
+}
+
 android {
   compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
   buildToolsVersion getExtOrDefault('buildToolsVersion')
@@ -33,7 +44,17 @@ android {
     targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
     versionCode 1
     versionName "1.0"
-    
+    buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
+  }
+
+  sourceSets {
+      main {
+          if (isNewArchitectureEnabled()) {
+              java.srcDirs += ['src/newarch']
+          } else {
+              java.srcDirs += ['src/oldarch']
+          }
+      }
   }
   
   buildTypes {
@@ -127,4 +148,12 @@ dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+if (isNewArchitectureEnabled()) {
+  react {
+      jsRootDir = file("../src/")
+      libraryName = "rnsystembars"
+      codegenJavaPackageName = "com.hudl.rn.systembars.generated"
+  }
 }
