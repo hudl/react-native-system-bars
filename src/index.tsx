@@ -123,7 +123,7 @@ export default class AndroidSystemBars {
    * Immersive mode uses 'SYSTEM_UI_FLAG_IMMERSIVE', 'SYSTEM_UI_FLAG_FULLSCREEN'
    * and 'SYSTEM_UI_FLAG_HIDE_NAVIGATION' flags.
    *
-   * Sticky immersive mode uses 'SYSTEM_UI_FLAG_IMMERSIVE', 'SYSTEM_UI_FLAG_FULLSCREEN'
+   * Sticky immersive mode uses 'SYSTEM_UI_FLAG_IMMERSIVE_STICKY', 'SYSTEM_UI_FLAG_FULLSCREEN'
    * and 'SYSTEM_UI_FLAG_HIDE_NAVIGATION' flags.
    *
    * 'Lean back' mode uses 'SYSTEM_UI_FLAG_FULLSCREEN' and
