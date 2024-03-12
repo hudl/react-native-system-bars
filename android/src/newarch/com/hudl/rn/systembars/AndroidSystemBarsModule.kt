@@ -11,8 +11,20 @@ class AndroidSystemBarsModule(reactContext: ReactApplicationContext) :
     AndroidSystemBarsImpl.setSystemUIVisibility(currentActivity, visibility.toInt())
   }
 
+  override fun addLayoutFlags(flags: Double) {
+    AndroidSystemBarsImpl.addLayoutFlags(currentActivity, flags.toInt())
+  }
+
+  override fun clearLayoutFlags(flags: Double) {
+    AndroidSystemBarsImpl.clearLayoutFlags(currentActivity, flags.toInt())
+  }
+
   override fun setDecorFitsSystemWindows(fitsSystemWindows: Boolean) {
     AndroidSystemBarsImpl.setDecorFitsSystemWindows(currentActivity, fitsSystemWindows)
+  }
+
+  override fun setDisplayCutoutMode(cutoutMode: Double) {
+    AndroidSystemBarsImpl.setDisplayCutoutMode(currentActivity, cutoutMode.toInt())
   }
 
   override fun setSystemBarsAppearance(appearance: Double, mask: Double) {

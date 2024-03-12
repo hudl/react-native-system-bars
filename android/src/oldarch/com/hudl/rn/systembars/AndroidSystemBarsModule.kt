@@ -13,8 +13,23 @@ class AndroidSystemBarsModule(reactContext: ReactApplicationContext) : ReactCont
   }
 
   @ReactMethod
+  fun addLayoutFlags(flags: Int) {
+    AndroidSystemBarsImpl.addLayoutFlags(currentActivity, flags)
+  }
+
+  @ReactMethod
+  fun clearLayoutFlags(flags: Int) {
+    AndroidSystemBarsImpl.clearLayoutFlags(currentActivity, flags)
+  }
+
+  @ReactMethod
   fun setDecorFitsSystemWindows(fitsSystemWindows: Boolean) {
     AndroidSystemBarsImpl.setDecorFitsSystemWindows(currentActivity, fitsSystemWindows)
+  }
+
+  @ReactMethod
+  fun setDisplayCutoutMode(cutoutMode: Int) {
+    AndroidSystemBarsImpl.setDisplayCutoutMode(currentActivity, cutoutMode)
   }
 
   @ReactMethod

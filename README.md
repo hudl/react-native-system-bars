@@ -2,11 +2,11 @@
 
 [![CircleCI](https://circleci.com/gh/hudl/react-native-system-bars/tree/main.svg?style=svg)](https://circleci.com/gh/hudl/react-native-system-bars/tree/main) [![npm version](https://badge.fury.io/js/react-native-system-bars.svg)](https://badge.fury.io/js/react-native-system-bars)
 
-Control the visibility of Android's Status and Navigation Bars.
+Control the visibility, behavior, and appearance of Android's Status and Navigation Bars.
 
-A lightweight implementation that exposes [Android's system UI visibility API](https://developer.android.com/training/system-ui) to the JS layer. 
+A lightweight implementation that exposes Android's [window insets API](https://developer.android.com/reference/android/view/WindowInsetsController), deprecated [system UI visibility API](https://developer.android.com/training/system-ui), and select layout management helpers to the JS layer.
 
-> Note, this package is for **Android only** and its API will silently do nothing when called on iOS.
+> Note, this package is for **Android only** and its APIs will silently do nothing when called on iOS.
 
 ## Installation
 
@@ -16,46 +16,68 @@ yarn add react-native-system-bars
 
 ## Usage
 
-### Setting Android's system UI visibility flags directly
+This package consists of three modules:
 
+* **`AndroidSystemBars` (Android API level 11+)**
+	* This module contains a variety of utility functions for the most common use cases, such as hiding system bars and enabling full-screen mode. Each utility function leverages the `AndroidWindowInsets` or `AndroidSystemUIVisibility` submodules, depending on the device's Android API version.
+* **`AndroidWindowInsets` (Android API level 30+)**
+	* This module exposes Android's [window insets API](https://developer.android.com/reference/android/view/WindowInsetsController), with additional functions for adding and removing [WindowManager layout flags](https://developer.android.com/reference/android/view/WindowManager.LayoutParams). `AndroidWindowInsets` allows you to change the behavior, appearance, and visibility of Android's system bars, while also tuning how your app content behaves around [display cutouts](https://developer.android.com/develop/ui/views/layout/display-cutout).
+* **`AndroidSystemUIVisibility` (Deprecated) (Android API level 11+)**
+	* This module has been deprecated with the introduction of Android's window insets API, which is exposed as `AndroidWindowInsets` in this package. Despite being fully functional, continued use of system UI flags is discouraged, due to their limited capabilities and potential removal in a future Android API. 
+
+### AndroidSystemBars
+
+> If a utility function doesn't exist for your use case,  consume the `AndroidWindowInsets` or `AndroidSystemUIVisibility` modules directly.
 ```typescript
 import AndroidSystemBars from "react-native-system-bars";
 
-// Go immersive (i.e. hide status bar and nav bar)
-AndroidSystemBars.setSystemUIVisibility(
-    'SYSTEM_UI_FLAG_IMMERSIVE',
-    'SYSTEM_UI_FLAG_FULLSCREEN',
-    'SYSTEM_UI_FLAG_HIDE_NAVIGATION'
-);
-
-// Show status bar and nav bar
-AndroidSystemBars.setSystemUIVisibility('SYSTEM_UI_FLAG_VISIBLE');
-```
-
-### Utility functions
-
-We've went through the [Android docs](https://developer.android.com/training/system-ui) for managing the visibility of system bars, and came up with a set of utility functions that you can use. 
-
-> If a utility function doesn't exist for your use case, just use the `AndroidSystemBars.setSystemUIVisibility()` function, passing whatever combination of flags you need.
-
-```typescript
-AndroidSystemBars.clearFlags();
+AndroidSystemBars.reset();
 
 AndroidSystemBars.setContentBehindSystemBars();
-
-AndroidSystemBars.dimSystemBars();
-
+  
 AndroidSystemBars.hideStatusBar();
 
 AndroidSystemBars.hideNavigationBar();
 
 AndroidSystemBars.hideStatusAndNavigationBars();
 
-AndroidSystemBars.enableFullScreenMode('immersive', /*preventResizing (optional)*/true);
+AndroidSystemBars.enableFullScreenMode('immersive');
 
-AndroidSystemBars.enableFullScreenMode('sticky-immersive', /*preventResizing (optional)*/true);
+AndroidSystemBars.enableFullScreenMode('sticky-immersive');
+```
 
-AndroidSystemBars.enableFullScreenMode('lean-back', /*preventResizing (optional)*/true);
+### AndroidWindowInsets
+
+```typescript
+import { AndroidWindowInsets } from "react-native-system-bars";
+
+AndroidWindowInsets.addLayoutFlags('FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS');
+  
+AndroidWindowInsets.clearLayoutFlags('FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS');
+
+AndroidWindowInsets.setDecorFitsSystemWindows(false);
+
+AndroidWindowInsets.setDisplayCutoutMode('LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES');
+
+AndroidWindowInsets.setSystemBarsAppearance('APPEARANCE_OPAQUE_STATUS_BARS');
+
+AndroidWindowInsets.setSystemBarsBehavior('BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE');
+
+AndroidWindowInsets.hide('STATUS_BARS', 'NAVIGATION_BARS');
+
+AndroidWindowInsets.show('STATUS_BARS', 'NAVIGATION_BARS');
+```
+
+### AndroidSystemUIVisibility
+
+```typescript
+import { AndroidSystemUIVisibility } from "react-native-system-bars";
+
+AndroidSystemUIVisibility.setSystemUIVisibility(
+	'SYSTEM_UI_FLAG_IMMERSIVE',
+	'SYSTEM_UI_FLAG_FULLSCREEN',
+	'SYSTEM_UI_FLAG_HIDE_NAVIGATION'
+);
 ```
 
 ## Contributing

@@ -7,9 +7,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Button
-        title="Clear flags"
+        title="Reset"
         onPress={() => {
-          AndroidSystemBars.clearFlags();
+          AndroidSystemBars.reset();
         }}
       />
       <Button
@@ -19,21 +19,31 @@ export default function App() {
         }}
       />
       <Button
+        title="Hide status bar"
+        onPress={() => {
+          AndroidSystemBars.hideStatusBar();
+        }}
+      />
+      <Button
+        title="Hide navigation bar"
+        onPress={() => {
+          AndroidSystemBars.hideNavigationBar();
+        }}
+      />
+      <Button
+        title="Hide status and navigation bars"
+        onPress={() => {
+          AndroidSystemBars.hideStatusAndNavigationBars();
+        }}
+      />
+      <Button
         title="Fullscreen mode - Immersive"
-        onPress={() =>
-          AndroidSystemBars.enableFullScreenMode('immersive', true)
-        }
+        onPress={() => AndroidSystemBars.enableFullScreenMode('immersive')}
       />
       <Button
         title="Fullscreen mode - immersive sticky"
         onPress={() =>
-          AndroidSystemBars.enableFullScreenMode('sticky-immersive', true)
-        }
-      />
-      <Button
-        title="Fullscreen mode - Lean back"
-        onPress={() =>
-          AndroidSystemBars.enableFullScreenMode('lean-back', true)
+          AndroidSystemBars.enableFullScreenMode('sticky-immersive')
         }
       />
     </View>
