@@ -1,6 +1,6 @@
 {
   "name": "react-native-system-bars",
-  "version": "1.0.0",
+  "version": "0.4.0",
   "description": "Control the visibility of Android's Status and Navigation Bars",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
