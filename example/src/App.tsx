@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 
 import AndroidSystemBars from 'react-native-system-bars';

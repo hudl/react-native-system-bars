@@ -1,7 +1,5 @@
-import { NativeModules, Platform } from 'react-native';
-
-// @ts-ignore-error
-const isTurboModuleEnabled = global.__turboModuleProxy != null;
+import { Platform } from 'react-native';
+import NativeSystemBars from './NativeSystemBars';
 
 const visibilityFlags = {
   SYSTEM_UI_FLAG_VISIBLE: 0,
@@ -18,10 +16,6 @@ const visibilityFlags = {
 };
 
 export default class AndroidSystemBars {
-  private static module = isTurboModuleEnabled
-    ? require('./NativeAndroidSystemBars').default
-    : NativeModules.AndroidSystemBars;
-
   /**
    * Control the visibility of Android's 'system bars' (i.e. the
    * Status Bar and Navigation Bar).
@@ -38,7 +32,7 @@ export default class AndroidSystemBars {
       // eslint-disable-next-line no-bitwise
       const visibility = flags.reduce((a, b) => a | visibilityFlags[b], 0);
 
-      AndroidSystemBars.module.setSystemUIVisibility(visibility);
+      NativeSystemBars?.setSystemUIVisibility(visibility);
     }
   }
 
