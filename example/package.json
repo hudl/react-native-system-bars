@@ -1,20 +1,22 @@
 {
   "name": "react-native-system-bars-example",
-  "description": "Example app for react-native-system-bars",
-  "version": "0.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
-    "android": "react-native run-android --active-arch-only",
-    "start": "react-native start"
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "dependencies": {
-    "react": "18.1.0",
-    "react-native": "0.70.0-rc.2"
+    "expo": "~55.0.5",
+    "expo-status-bar": "~55.0.4",
+    "react": "19.2.0",
+    "react-native": "0.83.2"
   },
+  "private": true,
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/runtime": "^7.12.5",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "metro-react-native-babel-preset": "^0.72.0"
+    "expo-dev-client": "~55.0.13",
+    "react-native-builder-bob": "^0.40.18",
+    "react-native-monorepo-config": "^0.3.3"
   }
 }

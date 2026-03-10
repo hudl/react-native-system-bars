@@ -1,37 +1,53 @@
 {
   "name": "react-native-system-bars",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Control the visibility of Android's Status and Navigation Bars",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.tsx",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "src",
     "lib",
-    "android"
+    "android",
+    "ios",
+    "cpp",
+    "*.podspec",
+    "react-native.config.js",
+    "!ios/build",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
   ],
   "scripts": {
-    "bootstrap": "yarn example && yarn",
-    "clean": "rimraf ./lib ./node_modules ./example/node_modules ./**/.gradle ./**/build ./**/.idea",
-    "compile": "yarn typescript",
-    "example": "yarn --cwd example",
-    "lc": "yarn lint-fix && yarn compile",
-    "lint": "eslint \"**/*.{js,ts,tsx}\" --max-warnings=0",
-    "lint-fix": "yarn lint --fix",
+    "example": "yarn workspace react-native-system-bars-example",
+    "clean": "del-cli lib",
     "prepare": "bob build",
-    "release": "release-it",
-    "typescript": "tsc --noEmit"
+    "typecheck": "tsc",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "release": "release-it --only-version"
   },
   "keywords": [
     "react-native",
-    "android",
-    "status bar",
-    "navigation bar",
-    "system UI visibility"
+    "ios",
+    "android"
   ],
-  "repository": "https://github.com/hudl/react-native-system-bars",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hudl/react-native-system-bars.git"
+  },
   "author": "hudl",
   "license": "MIT",
   "bugs": {
@@ -39,37 +55,71 @@
   },
   "homepage": "https://github.com/hudl/react-native-system-bars#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
+    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^11.0.0",
-    "@react-native-community/eslint-config": "^3.1.0",
-    "@release-it/conventional-changelog": "^5.0.0",
-    "@types/react": "^18.0.15",
-    "@types/react-native": "0.69.5",
-    "commitlint": "^11.0.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^4.2.5",
-    "prettier": "^2.0.5",
-    "react": "18.1.0",
-    "react-native": "0.70.0-rc.2",
-    "react-native-builder-bob": "^0.18.3",
-    "release-it": "^15.2.0",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.7.4"
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/compat": "^1.3.2",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.35.0",
+    "@react-native/babel-preset": "0.83.0",
+    "@react-native/eslint-config": "0.83.0",
+    "@release-it/conventional-changelog": "^10.0.1",
+    "@types/react": "^19.1.12",
+    "commitlint": "^19.8.1",
+    "del-cli": "^6.0.0",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "lefthook": "^2.0.3",
+    "prettier": "^2.8.8",
+    "react": "19.2.0",
+    "react-native": "0.83.2",
+    "react-native-builder-bob": "^0.40.18",
+    "release-it": "^19.0.4",
+    "turbo": "^2.5.6",
+    "typescript": "^5.9.2"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn lint && yarn typescript"
+  "workspaces": [
+    "example"
+  ],
+  "packageManager": "yarn@4.11.0",
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  },
+  "codegenConfig": {
+    "name": "SystemBarsSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.hudl.rn.systembars"
     }
+  },
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
   },
   "commitlint": {
     "extends": [
@@ -89,52 +139,20 @@
     },
     "plugins": {
       "@release-it/conventional-changelog": {
-        "preset": "angular"
+        "preset": {
+          "name": "angular"
+        }
       }
     }
   },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@react-native-community",
-      "prettier"
+  "create-react-native-library": {
+    "type": "turbo-module",
+    "languages": "kotlin-objc",
+    "tools": [
+      "eslint",
+      "lefthook",
+      "release-it"
     ],
-    "rules": {
-      "prettier/prettier": [
-        "warn",
-        {
-          "quoteProps": "consistent",
-          "singleQuote": true,
-          "tabWidth": 2,
-          "trailingComma": "es5",
-          "useTabs": false
-        }
-      ]
-    }
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "lib/"
-  ],
-  "prettier": {
-    "quoteProps": "consistent",
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5",
-    "useTabs": false
-  },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      "module",
-      [
-        "typescript",
-        {
-          "project": "tsconfig.build.json"
-        }
-      ]
-    ]
+    "version": "0.57.2"
   }
 }
